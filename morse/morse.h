@@ -9,6 +9,7 @@ class Morse {
     std::map<char, std::string> toMorse;
 
     std::string decoded;
+    bool useBinaryTree = false;
     Node* tree;
 
     void retrieve(Node*, const std::string&);

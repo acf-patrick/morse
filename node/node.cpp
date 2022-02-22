@@ -4,9 +4,25 @@
 
 using namespace std;
 
+// split string
+std::vector<std::string> split(std::string str, const std::string& sep) {
+    std::vector<std::string> ret;
+    size_t pos = 0;
+    std::string token;
+
+    while ((pos = str.find(sep)) != std::string::npos) {
+        token = str.substr(0, pos);
+        ret.push_back(token);
+        str.erase(0, pos + sep.length());
+    }
+
+    ret.push_back(str);
+
+    return ret;
+}
+
 // function to return the index of close parenthesis
-int findIndex(string str, int si, int ei)
-{
+int findIndex(string str, int si, int ei) {
     if (si > ei)
         return -1;
  
@@ -36,14 +52,13 @@ int findIndex(string str, int si, int ei)
 }
  
 // function to construct tree from string
-Node* treeFromString(const string& str, int si, int ei)
-{
+Node* treeFromString(const string& str, int si, int ei) {
     // Base case
     if (si > ei)
         return NULL;
  
     // new root
-    Node* root = new Node(str[si] - '0');
+    Node* root = new Node(str[si]);
     int index = -1;
  
     // if next char is '(' find the index of
@@ -58,9 +73,9 @@ Node* treeFromString(const string& str, int si, int ei)
         root->left = treeFromString(str, si + 2, index - 1);
  
         // call for right subtree
-        root->right
-            = treeFromString(str, index + 2, ei - 1);
+        root->right = treeFromString(str, index + 2, ei - 1);
     }
+    
     return root;
 }
 

@@ -28,14 +28,25 @@ string Morse::encode(const string& str) {
     string ret;
     for (auto car : str) {
         if (car == ' ')
-            ret += " ";
-        ret += ((car==' ') ? " " : toMorse[car]);
+            ret += "/";
+        ret += ((car==' ') ? " " : toMorse[car]) + " ";
     }
     return ret;
 }
 
 string Morse::decode(const string& morse) {
-    retrieve(tree, morse);
+    if (useBinaryTree)
+        retrieve(tree, morse);
+    else {
+        decoded = "";
+        auto words = split(morse, "/");
+        for (auto word: words) {
+            auto letters = split(word, " ");
+            for (auto letter: letters)
+                decoded += toString[letter];
+            decoded += " ";
+        }
+    }
     return decoded;
 }
 
