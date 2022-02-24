@@ -1,6 +1,7 @@
 #include "node.h"
 #include <stack>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ std::vector<std::string> split(std::string str, const std::string& sep) {
     }
 
     ret.push_back(str);
+    // cout << "here : " << str << endl;
 
     return ret;
 }

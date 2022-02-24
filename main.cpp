@@ -16,8 +16,7 @@ int main(int argc, char* argv[]) {
         string input;
         if (choice == 1) {
             cout << "Example :" << endl;
-            cout << ".... . .-.. ---/.--- --- .-. .-.. -.. is Hello World\n";
-            
+            cout << "....;.;.-..;---/.--;---;.-.;.-..;-.. is Hello World\n";
             cout << "Enter Morse code : "; cin >> input;
             cout << "> " << morse.decode(input) << endl;
         } else if (choice == 2) {

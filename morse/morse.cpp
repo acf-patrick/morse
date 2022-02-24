@@ -1,4 +1,5 @@
 #include "morse.h"
+#include <iostream>
 
 using namespace std;
 
@@ -11,8 +12,8 @@ Morse::Morse() {
     for (int i=0; i<26+10; ++i) {
         // Numbers
         if (i >= 26) {
-            toString[digits[i]] = keys[i];
-            toMorse[keys[i]] = digits[i];
+            toString[digits[i-26]] = keys[i];
+            toMorse[keys[i]] = digits[i-26];
         } else {
             toString[letters[i]] = keys[i];
             toMorse[keys[i]] = letters[i];
@@ -29,7 +30,7 @@ string Morse::encode(const string& str) {
     for (auto car : str) {
         if (car == ' ')
             ret += "/";
-        ret += ((car==' ') ? " " : toMorse[car]) + " ";
+        ret += toMorse[car] + ";";
     }
     return ret;
 }
@@ -41,7 +42,7 @@ string Morse::decode(const string& morse) {
         decoded = "";
         auto words = split(morse, "/");
         for (auto word: words) {
-            auto letters = split(word, " ");
+            auto letters = split(word, ";");
             for (auto letter: letters)
                 decoded += toString[letter];
             decoded += " ";
